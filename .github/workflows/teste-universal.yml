@@ -1,0 +1,55 @@
+name: Teste Universal do Abix
+
+on: [push]
+
+jobs:
+  testar-sistemas:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            pkg_target: node18-linux-x64
+            bin_name: abix
+            exec_cmd: ./abix
+          - os: macos-latest
+            pkg_target: node18-macos-x64
+            bin_name: abix
+            exec_cmd: ./abix
+          - os: windows-latest
+            pkg_target: node18-win-x64
+            bin_name: abix.exe
+            exec_cmd: ./abix.exe
+    
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Baixar Código
+      uses: actions/checkout@v3
+
+    - name: Instalar Node para Build
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Instalar Dependências e PKG
+      run: |
+        npm install
+        npm install -g pkg
+
+    - name: 🏗️ Gerar Executável Binário
+      run: pkg src/cli.js --targets ${{ matrix.pkg_target }} --output ${{ matrix.bin_name }}
+
+    # --- ETAPAS DE TESTE ATUALIZADAS ---
+    - name: ⚙️ Criar Configuração do Projeto (Forçado)
+      # CORREÇÃO: Adicionada a flag --force e a versão correta do Python
+      run: ${{ matrix.exec_cmd }} init node:20.11.0 python:3.11.3 --force
+
+    - name: 🚀 Testar 1 (Download + Instalação + Criar Snapshot)
+      run: ${{ matrix.exec_cmd }} testar
+
+    - name: 🗑️ Limpar apenas Local
+      run: ${{ matrix.exec_cmd }} clean
+
+    - name: ⚡ Testar 2 (Restauração via Snapshot)
+      run: ${{ matrix.exec_cmd }} testar

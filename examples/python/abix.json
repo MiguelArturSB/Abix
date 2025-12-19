@@ -1,0 +1,9 @@
+{
+  "runtimes": {
+    "python": "3.11.3"
+  },
+  "init_commands": [
+    "pip install -r requirements.txt"
+  ],
+  "entry": "python main.py"
+}

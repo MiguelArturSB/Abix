@@ -1,0 +1,9 @@
+{
+  "runtimes": {
+    "node": "22.0.0"
+  },
+  "init_commands": [
+    "npm install"
+  ],
+  "entry": "node index.js"
+}

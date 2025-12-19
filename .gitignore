@@ -1,0 +1,10 @@
+# Dependências
+node_modules/
+
+# Arquivos gerados pelo Abix
+.abix_state
+abix.lock
+
+# Executáveis gerados
+*.exe
+abix
