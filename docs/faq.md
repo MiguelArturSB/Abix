@@ -1,33 +1,32 @@
-# Perguntas Frequentes (FAQ)
+# Frequently Asked Questions (FAQ)
 
-### Por que usar o Abix em vez de NVM, pyenv ou Docker?
+### Why use Abix instead of NVM, pyenv, or Docker?
 
-*   **Simplicidade:** O Abix é uma ferramenta única com uma proposta simples: gerenciar runtimes. Ele não tem a complexidade de rede, volumes e orquestração do Docker, nem exige a instalação e o gerenciamento de scripts de shell como NVM/pyenv.
-*   **Portabilidade:** Um único executável `abix.exe` é tudo que você precisa no Windows. Não há dependências de WSL ou Hyper-V.
-*   **Velocidade:** O sistema de snapshots torna a restauração de ambientes de projetos existentes quase instantânea, sendo muito mais rápido que um `npm install` ou `pip install` do zero.
+*   **Simplicity:** Abix is a single tool with a simple purpose: managing runtimes. It doesn't have the complexity of networking, volumes, and orchestration like Docker, nor does it require installing and managing shell scripts like NVM/pyenv.
+*   **Portability:** A single `abix.exe` executable is all you need on Windows. There are no dependencies on WSL or Hyper-V.
+*   **Speed:** The snapshot system makes restoring existing project environments almost instantaneous, being much faster than running `npm install` or `pip install` from scratch.
 
-O Abix brilha em cenários de desenvolvimento e CI/CD onde a simplicidade e a velocidade são mais importantes que a complexa orquestração de contêineres.
+Abix shines in development and CI/CD scenarios where simplicity and speed are more important than complex container orchestration.
 
-### O Abix modifica meu sistema globalmente?
+### Does Abix modify my system globally?
 
-Muito pouco. A única modificação "global" que ele sugere é adicionar a si mesmo ao PATH do sistema para sua conveniência.
+Very little. The only "global" modification it suggests is adding itself to the system PATH for your convenience.
 
-Todos os runtimes (Node, Python) e pacotes são instalados dentro da pasta `~/.abix`, **totalmente isolados** e sem interferir com quaisquer versões que você já tenha instalado no seu sistema.
+All runtimes (Node, Python) and packages are installed inside the `~/.abix` folder, **fully isolated** and without interfering with any versions you may have already installed on your system.
 
-### Onde os arquivos são armazenados?
+### Where are the files stored?
 
-Todo o cache global do Abix (runtimes, snapshots, etc.) é armazenado em `~/.abix` (ou seja, `C:\Users\SeuNome\.abix` no Windows).
+The entire global cache for Abix (runtimes, snapshots, etc.) is stored in `~/.abix` (i.e., `C:\Users\YourName\.abix` on Windows).
 
-### O Abix é seguro?
+### Is Abix secure?
 
-Sim. O Abix implementa uma verificação de integridade para cada runtime baixado. Para o Node.js, ele compara o hash do arquivo baixado com a lista oficial publicada no site `nodejs.org`. Para outros runtimes, ele adota uma política de TOFU (Trust On First Use), onde o hash do primeiro download é salvo e verificado em todas as execuções futuras. Se um arquivo for adulterado, o Abix se recusará a executá-lo.
+Yes. Abix implements an integrity check for every downloaded runtime. For Node.js, it compares the hash of the downloaded file with the official list published on the `nodejs.org` website. For other runtimes, it adopts a TOFU (Trust On First Use) policy, where the hash from the first download is saved and verified in all future runs. If a file has been tampered with, Abix will refuse to execute it.
 
+### How do I update a runtime version in a project?
 
-### Como eu atualizo a versão de um runtime em um projeto?
+Simply edit the version in your `abix.json` file:
 
-Simplesmente edite a versão no seu arquivo `abix.json`:
-
-**Antes:**
+**Before:**
 ```json
 {
   "runtimes": { "node": "20.11.0" }
@@ -40,4 +39,4 @@ Simplesmente edite a versão no seu arquivo `abix.json`:
   "runtimes": { "node": "20.12.0" }
 }
 ```
-Depois, rode abix testar. O Abix detectará a nova versão, fará o download (se necessário) e recriará o snapshot das dependências.
+Then, run abix testar. Abix will detect the new version, download it (if necessary), and recreate the dependency snapshot.

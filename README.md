@@ -1,87 +1,85 @@
 # Abix
 
-**Seu Gerenciador de Ambientes de Desenvolvimento, Simples e Universal.**
+**Your Simple and Universal Development Environment Manager.**
 
-
-
-[![Status do Workflow](https://github.com/MiguelArturSB/Abix/actions/workflows/teste-universal.yml/badge.svg)](https://github.com/MiguelArturSB/Abix/actions)
-[![Licença](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Workflow Status](https://github.com/MiguelArturSB/Abix/actions/workflows/teste-universal.yml/badge.svg)](https://github.com/MiguelArturSB/Abix/actions)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ---
 
-### O que é o Abix?
+### What is Abix?
 
-Abix é uma ferramenta de linha de comando (CLI) de **dependência zero** que gerencia ambientes de desenvolvimento Node.js e Python de forma rápida e isolada. Cansado de NVM, pyenv, Conda ou da complexidade do Docker para projetos simples? O Abix é a solução.
+Abix is a **zero-dependency** command-line interface (CLI) tool that manages Node.js and Python development environments in a fast and isolated way. Tired of NVM, pyenv, Conda, or the complexity of Docker for simple projects? Abix is the solution.
 
-Com um único arquivo executável e um simples `abix.json`, você garante que qualquer pessoa em qualquer sistema operacional (Windows, macOS, Linux) rode seu projeto com as versões corretas das ferramentas, sem precisar instalar mais nada.
+With a single executable file and a simple `abix.json`, you ensure that anyone on any operating system (Windows, macOS, Linux) can run your project with the correct tool versions, without needing to install anything else.
 
-### ✨ Principais Funcionalidades
+### ✨ Key Features
 
-*   📦 **Zero Dependência:** Apenas um arquivo executável. Não requer Node.js, Python ou qualquer outra ferramenta pré-instalada no sistema.
-*   🖥️ **Multiplataforma Universal:** Funciona de forma idêntica no Windows, macOS e Linux.
-*   ⚡ **Rápido com Cache Inteligente:** Runtimes são baixados apenas uma vez e armazenados em cache global. Dependências de projetos são salvas em "snapshots", tornando instalações futuras quase instantâneas.
-*   📄 **Configuração Declarativa:** Defina tudo que seu projeto precisa em um único arquivo `abix.json`.
-*   🤖 **Detecção Automática:** O comando `abix init` pode detectar se seu projeto usa Node.js (`package.json`) ou Python (`requirements.txt`) e criar uma configuração inicial para você.
-*   🛡️ **Seguro:** Verifica a integridade (hash) dos runtimes baixados para garantir que não foram adulterados.
+*   📦 **Zero Dependency:** Just one executable file. It doesn't require Node.js, Python, or any other tool to be pre-installed on the system.
+*   🖥️ **Universal Cross-Platform:** Works identically on Windows, macOS, and Linux.
+*   ⚡ **Fast with Smart Caching:** Runtimes are downloaded only once and are globally cached. Project dependencies are saved as "snapshots," making future setups nearly instantaneous.
+*   📄 **Declarative Configuration:** Define everything your project needs in a single `abix.json` file.
+*   🤖 **Auto-Detection:** The `abix init` command can detect if your project uses Node.js (`package.json`) or Python (`requirements.txt`) and create an initial configuration for you.
+*   🛡️ **Secure:** Verifies the integrity (hash) of downloaded runtimes to ensure they have not been tampered with.
 
-### 🚀 Início Rápido
+### 🚀 Quick Start
 
-1.  **Baixe o Abix:** Vá para a [página de Releases](https://github.com/MiguelArturSB/Abix/releases) e baixe o executável para o seu sistema.
+1.  **Download Abix:** Go to the [Releases page](https://github.com/MiguelArturSB/Abix/releases) and download the executable for your system.
 
-2.  **Configure o PATH (Recomendado):** Para usar o comando `abix` de qualquer lugar, siga nosso [**Guia de Instalação**](./docs/installation.md).
+2.  **Set up PATH (Recommended):** To use the `abix` command from anywhere, follow our [**Installation Guide**](./docs/installation.md).
 
-3.  **Inicie um Projeto:** Navegue até a pasta do seu projeto e execute:
+3.  **Initialize a Project:** Navigate to your project folder and run:
     
-    #### O Abix tentará detectar seu projeto (Node/Python)
+    #### Abix will try to detect your project (Node/Python)
     ```bash
     abix init
     ```
 
-    #### Ou especifique as versões que você quer
+    #### Or specify the versions you want
     ```bash
     abix init node:20.11.0 python:3.11.3
     ```
-    Isso criará um arquivo `abix.json`.
+    This will create an `abix.json` file.
 
-4.  **Execute:** Agora, instale as dependências e rode seu projeto.
+4.  **Run:** Now, install the dependencies and run your project.
     
-    #### Instala os runtimes e dependências, e testa as versões
+    #### Installs runtimes and dependencies, and tests the versions
     ```bash
     abix testar
     ```
-    #### Entra em um shell com o ambiente configurado
+    #### Enters a shell with the configured environment
     ```bash
     abix shell
     ```
 
-    #### Ou, se configurado no abix.json, roda o ponto de entrada do projeto
+    #### Or, if configured in abix.json, runs the project's entry point
     ```bash
     abix run
     ```
 
-### Comandos Principais
+### Main Commands
 
-| Comando          | Descrição                                                 |
-| ---------------- | --------------------------------------------------------- |
-| `abix init`      | Cria o arquivo de configuração `abix.json` no projeto.    |
-| `abix testar`    | Baixa runtimes e instala dependências listadas.           |
-| `abix shell`     | Inicia um novo terminal com o ambiente do projeto ativado.  |
-| `abix run`       | Executa o ponto de entrada (`entry`) definido no `abix.json`. |
-| `abix clean`     | Remove arquivos e pastas locais gerados pelo Abix.        |
-| `abix setup`     | Mostra instruções para adicionar o Abix ao PATH.          |
+| Command          | Description                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| `abix init`      | Creates the `abix.json` configuration file in the project.  |
+| `abix testar`    | Downloads runtimes and installs listed dependencies.        |
+| `abix shell`     | Starts a new terminal with the project's environment activated. |
+| `abix run`       | Runs the entry point (`entry`) defined in `abix.json`.      |
+| `abix clean`     | Removes local files and folders generated by Abix.          |
+| `abix setup`     | Shows instructions to add Abix to the system PATH.          |
 
-➡️ Para uma explicação detalhada de cada comando, confira a [**Referência de Comandos**](./docs/installation.md).
+➡️ For a detailed explanation of each command, check out the [**Command Reference**](./docs/commands.md).
 
-### 💡 Como Funciona?
+### 💡 How It Works?
 
-O Abix centraliza todos os downloads em um diretório `.abix` na sua pasta de usuário. Quando você executa um comando, ele lê o `abix.json`, constrói um `PATH` temporário que prioriza os runtimes isolados e executa seu comando nesse ambiente seguro.
+Abix centralizes all downloads in a `.abix` directory in your user's home folder. When you execute a command, it reads the `abix.json` file, builds a temporary `PATH` that prioritizes the isolated runtimes, and executes your command in that safe environment.
 
-➡️ Quer saber mais? Leia nosso guia [**Como o Abix Funciona**](./docs/installation.md).
+➡️ Want to know more? Read our guide on [**How Abix Works**](./docs/how-it-works.md).
 
-### 🤝 Contribuindo
+### 🤝 Contributing
 
-Contribuições são muito bem-vindas! Se você tem ideias, sugestões ou encontrou um bug, sinta-se à vontade para abrir uma [Issue](https://github.com/MiguelArturSB/Abix/issues) ou enviar um [Pull Request](https://github.com/MiguelArturSB/Abix/pulls).
+Contributions are very welcome! If you have ideas, suggestions, or have found a bug, feel free to open an [Issue](https://github.com/MiguelArturSB/Abix/issues) or submit a [Pull Request](https://github.com/MiguelArturSB/Abix/pulls).
 
-### 📝 Licença
+### 📝 License
 
-Este projeto é distribuído sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
+This project is distributed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
